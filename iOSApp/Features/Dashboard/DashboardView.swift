@@ -55,16 +55,7 @@ struct DashboardView: View {
                             .foregroundColor(AppTheme.accent)
                     }
                 ) {
-                    if viewModel.recentFive.isEmpty {
-                        GlassCard {
-                            Text("No recent transactions to show.")
-                                .font(AppTheme.Fonts.body)
-                                .foregroundStyle(.secondary)
-                                .frame(maxWidth: .infinity, minHeight: 100)
-                        }
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
-                    } else {
+                    if viewModel.hasRecentTransactions {
                         ForEach(viewModel.recentFive, id: \.id) { tx in
                             TransactionRow(
                                 transaction: tx,
@@ -78,6 +69,15 @@ struct DashboardView: View {
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                         }
+                    } else {
+                        GlassCard {
+                            Text("No recent transactions to show.")
+                                .font(AppTheme.Fonts.body)
+                                .foregroundStyle(.secondary)
+                                .frame(maxWidth: .infinity, minHeight: 100)
+                        }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     }
                     Button {
                         viewModel.showAddSheet()

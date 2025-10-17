@@ -27,6 +27,10 @@ class DashboardViewModel: ObservableObject {
         onBudgetAccounts.count
     }
 
+    var hasRecentTransactions: Bool {
+        !recentFive.isEmpty
+    }
+
     // MARK: - Formatted Values for Presentation
     var spentTodayFormatted: String {
         formatMoney(spentToday())
