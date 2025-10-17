@@ -18,7 +18,7 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            NavigationStack { DashboardView() }
+            NavigationStack { DashboardView(appState: appState) }
                 .tabItem { Label("Dashboard", systemImage: "chart.pie.fill") }
 
             NavigationStack { AccountsView() }
